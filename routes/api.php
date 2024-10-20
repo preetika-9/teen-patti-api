@@ -18,6 +18,17 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/game/create', [GameController::class, 'createGame']);
+
+
+// Route::middleware('auth:sanctum')->group(function () {
+    Route::post('game/create', [GameController::class, 'createGame']);
+    Route::post('game/join', [GameController::class, 'joinGame']);
+    Route::post('game/start', [GameController::class, 'startGame']);
+    Route::post('game/bet', [GameController::class, 'placeBet']);
+    Route::post('game/checkWinner', [GameController::class, 'checkWinner']);
+// });
+
+
+Route::get('/health', function () {
+    return response()->json(['status' => 'API is working']);
 });
